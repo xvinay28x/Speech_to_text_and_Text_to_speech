@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-size: 18px;
+            font-family: sans-serif;
+            background-color: black;
+        }
+        #container{
+            height: 100%;
+            width: 100%;
+        }
+        #head_line{
+            font-size: 2rem;
+            text-align: center;
+            margin-top: 1rem;
+            color: white;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+        #main_container{
+            height: 20rem;
+            width: 60rem;
+            margin-left: 13rem;
+            margin-top: 8rem;
+            background-color: yellow;
+        }
+        #gif{
+            position: absolute;
+        }
+        .botton{
+            width: 17rem;
+            height: 22rem;
+            border-radius: 0 0 1rem 1rem;
+            margin: 2rem 4.1rem;
+            float: left;
+        }
+        .botton button{
+            height: 3.5rem;
+            width: 100%;
+            border-color: black;
+            border-radius: 2rem;
+            border: none;
+            position: relative;
+        
+            margin-left: 5rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            background-color: rgb(66, 64, 64);
+        }
+        .botton button:hover{
+            background-color: rgb(201, 165, 5);
+           
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 id="head_line">Speech Recognition</h1>
+        <div id="main_container">
+            <img src="/static/voice_wave.gif" alt="" id="gif" height="360" width="1100">
+            <dir class="botton">
+                <form action="/stt" method="POST"><button type="submit">Speech To Text</button></form>
+            </dir>
+            <dir class="botton">
+                <form action="/tts" method="POST"><button type="submit">Text To Speech</button></form>
+            </dir>
+        </div>
+    </div> 
+</body>
+</html>

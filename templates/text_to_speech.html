@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>speech to text</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 18px;
+            background-color: black;
+        }
+        #container{
+            height: 100%;
+            width: 100%;
+        
+        }
+        .heading{
+            width: 100%;
+            height: 2rem;
+            font-size: 2rem;
+            text-align: center;
+            color: white;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        #main{
+            height: 30rem;
+            width: 70%;
+            margin: 2rem 15%;
+        }
+        #gif{
+            position: absolute;
+            margin-top: 10rem;
+        }
+        .radio{
+            display: inline;
+            width: 100%;
+            height: 2rem;
+            position: relative;
+            color: white;
+
+        }
+        .radio input{
+            height: 2rem;
+            width: 2rem;
+            margin-left: 12rem;
+            margin-top: 2rem;
+        }
+        .radio label{
+            font-size: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heading">
+            <h1>Text To Speech</h1>
+        </div>
+        <div id="main">
+            <img src="/static/voice_wave.gif" alt="" id="gif" height="360" width="1075">
+            <div class="radio">
+                <input type="radio" name="input" id="microphone">
+                <label for="microphone">MicroPhone</label>
+            </div>
+            <div class="radio">
+                <input type="radio" name="input" id="file">
+                <label for="file">Upload File</label>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
