@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>speak</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 18px;
+            background-color: black;
+        }
+        #container{
+            height: 100%;
+            width: 100%;
+        
+        }
+        #heading{
+            font-size: 2rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: white;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        #main_container{
+            height: 30rem;
+            width: 50rem;
+            background-color: white;
+            margin-left: 18rem;
+            margin-top: 5rem;
+        }
+        #gif{
+            position: absolute;
+            margin-top: 15rem;
+        }
+        .words{
+            height: 15rem;
+            width: 100%;
+            background-color: white;
+        }
+        #p{
+            font-size: 2.5rem;
+            width: 100%;
+            height: 100%;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: rgb(75, 73, 73);
+            background-color: white;
+        }
+        #button_container{
+            position: relative;
+            height: 8rem;
+            width: 100%;
+        }
+        #submit{
+            height: 3rem;
+            width: 8rem;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            margin-left: 14rem;
+            margin-top: 2rem;
+            background-color: rgb(66, 64, 64);
+        }
+        #reset{
+            height: 3rem;
+            width: 8rem;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            margin-left: 6rem;
+            background-color: rgb(66, 64, 64);
+        }
+        #submit:hover,#reset:hover{
+            background-color: rgb(201, 165, 5);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 id="heading">Speech To Text Using MicroPhone</h1>
+        <div id="main_container">
+            <form action="/download_file" method="post">
+
+            <img src="/static/voice_wave.gif" alt="" id="gif" height="340" width="900">
+            <div class="words">
+                <textarea id="p" spellcheck="true" name="converted_text" placeholder="Speak Now..."></textarea>
+            </div>
+            <div id="button_container">
+                <button type="submit" id="submit">Download</button>
+                <button type="reset" id="reset" onclick="reset_text()">Reset</button>
+            </div>
+            </form>
+        </div>
+        
+    </div>
+</body>
+<script>
+    var speech = true;
+    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+    const recognition = new SpeechRecognition();
+    recognition.interimResults = true;
+    recognition.continuous = true;
+    recognition.lang = "{{lang}}"
+    const words = document.querySelector('.words')
+    c = words.appendChild(p);
+    m = ""
+    recognition.addEventListener('result',e =>{
+        const transcript = Array.from(e.results)
+        .map(result => result[0])
+        .map(result => result.transcript)
+        .join('')
+        document.getElementById('p').setAttribute("value",transcript)
+        document.getElementById('p').innerHTML = transcript;
+        
+    })
+    if(speech == true){
+        recognition.start();
+        recognition.addEventListener('end',recognition.start);
+    }
+    function reset_text(){
+            recognition.stop()
+            document.getElementById('p').innerHTML = ""
+            document.getElementById('p').value = ""
+        }
+</script>
+</html>

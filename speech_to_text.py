@@ -9,5 +9,8 @@ with sr.Microphone() as source:
 try:
     text = r.recognize_google(audio)  
     print("User said : ",text)
+    a = open("voice.txt",'w')
+    a.write(text)
+    a.close()
 except: 
     print("Sorry, couldn't hear you!")

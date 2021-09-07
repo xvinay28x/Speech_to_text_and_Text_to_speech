@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>upload</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 18px;
+            background-color: black;
+        }
+        #container{
+            height: 100%;
+            width: 100%;
+        
+        }
+        #heading{
+            font-size: 2rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        #main_container{
+            height: 30rem;
+            width: 50rem;
+            margin-left: 18rem;
+            margin-top: 2rem;
+            position: fixed;
+        }
+        #gif{
+            position: absolute;
+            margin-top: 10rem;
+        }
+        #download{
+            height: 3rem;
+            width: 10rem;
+            margin-top: 6rem;
+            margin-left: 20rem;
+            position: relative;
+        }
+        #download button{
+            height: 3rem;
+            width: 10rem;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            background-color: rgb(66, 64, 64);
+        }
+        #download button:hover{
+            background-color: rgb(201, 165, 5);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 id="heading">Text To Speech Using File</h1>
+        <div id="main_container">
+            <img src="/static/voice_wave.gif" alt="" id="gif" height="340" width="900">
+            <div id="download">
+                <button id="submit" type="submit">Download</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>write</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            font-size: 18px;
+            background-color: black;
+        }
+        #container{
+            height: 100%;
+            width: 100%;
+        
+        }
+        #heading{
+            font-size: 2rem;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: white;
+            text-align: center;
+            margin-top: 1rem;
+        }
+        #main_container{
+            height: 22rem;
+            width: 50rem;
+            background-color: white;
+            margin-left: 18rem;
+            margin-top: 2rem;
+            overflow: hidden;
+        }
+        #write{
+            height: 15rem;
+            width: 100%;
+        }
+        #text{
+            height: 15rem;
+            width: 99.7%;
+            background-color: white;
+            font-size: 3rem;
+            position: relative;
+            color: rgb(75, 73, 73);
+        }
+        #gif{
+            position: absolute;
+            margin-top: 15rem;
+            
+        }
+        #button_container{
+            position: relative;
+            height: 8rem;
+            width: 100%;
+        }
+        #submit{
+            height: 3rem;
+            width: 8rem;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            margin-left: 14rem;
+            margin-top: 2rem;
+            background-color: rgb(66, 64, 64);
+        }
+        #reset{
+            height: 3rem;
+            width: 8rem;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            margin-left: 6rem;
+            background-color: rgb(66, 64, 64);
+        }
+        #submit:hover,#reset:hover{
+            background-color: rgb(201, 165, 5);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1 id="heading">Text To Speech</h1>
+        <div id="main_container">
+            <form action="#">
+            <div id="write">
+                <img src="/static/voice_wave.gif" alt="" id="gif" height="340" width="900">
+                <textarea name="text" id="text" cols="30" rows="10" placeholder="Write Here..."></textarea>
+            </div>
+            
+            <div id="button_container">
+                <button type="submit" id="submit">Convert</button>
+                <button type="reset" id="reset">Reset</button>
+            </div>
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>speech to text</title>
+    <title>text to speech</title>
     <style>
         *{
             padding: 0;
@@ -24,7 +24,11 @@
             font-size: 2rem;
             text-align: center;
             color: white;
+            margin-top: 1rem;
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        .heading h1{
+            font-size: 2rem;
         }
         #main{
             height: 30rem;
@@ -46,12 +50,81 @@
         .radio input{
             height: 2rem;
             width: 2rem;
-            margin-left: 12rem;
+            margin-left: 15rem;
             margin-top: 2rem;
+            cursor: pointer;
         }
         .radio label{
             font-size: 2rem;
         }
+        #upload_container{
+            width: 20%;
+            height: 3.5rem;
+            position: relative;
+            margin-top: 2rem;
+            margin-left: 24rem;
+            overflow: hidden;
+        }
+        #upload_container input::-webkit-file-upload-button{
+            width: 64%;
+            height: 3.5rem;
+            font-size: 1.3rem;
+            cursor: pointer;
+            background-color: rgb(66, 64, 64);
+        }
+        #upload_container input::-webkit-file-upload-button:hover{
+            background-color: rgb(201, 165, 5);
+        }
+        #start_container{
+            width: 20%;
+            height: 3.5rem;
+            position: relative;
+            margin-top: 2rem;
+            margin-left: 24rem;
+            overflow: hidden; 
+            background: none;
+        }
+        #start_container form{
+            background: none;
+        }
+
+        #start_container button{
+            width: 100%;
+            height: 3.5rem;
+            font-size: 1.3rem;
+            cursor: pointer;
+            background-color: rgb(66, 64, 64);
+            border-radius: 2rem;
+            
+        }
+        
+        #upload_container button:hover,#start_container button:hover{
+            background-color: rgb(201, 165, 5);
+        }
+        #submit_container{
+            width: 20%;
+            height: 3.5rem;
+            position: relative;
+            margin-top: 2rem;
+            margin-left: 24rem;
+            overflow: hidden;
+            background: none;
+        }
+        #submit_container form{
+            background: none;
+        }
+        #submit_container input{
+            width: 100%;
+            height: 3.5rem;
+            font-size: 1.3rem;
+            cursor: pointer;
+            background-color: rgb(66, 64, 64);
+            border-radius: 2rem;
+        }
+        #submit_container input:hover{
+            background-color: rgb(201, 165, 5);
+        }
+
     </style>
 </head>
 <body>
@@ -59,18 +132,41 @@
         <div class="heading">
             <h1>Text To Speech</h1>
         </div>
+        <form action="/main" method="post" enctype="multipart/form-data">
         <div id="main">
             <img src="/static/voice_wave.gif" alt="" id="gif" height="360" width="1075">
             <div class="radio">
-                <input type="radio" name="input" id="microphone">
-                <label for="microphone">MicroPhone</label>
+                <input type="radio" name="input" value="write" id="microphone">
+                <label for="microphone">Write</label>
             </div>
             <div class="radio">
-                <input type="radio" name="input" id="file">
+                <input type="radio" name="input" value="upload" id="file">
                 <label for="file">Upload File</label>
             </div>
+            <div id="upload_container">
+                <input type="file" accept=".txt" name="file">
+            </div>
+            <div id="start_container">
+                <form action="/write" method="POST"><button id="start_now" type="submit">Start Now</button></form>
+            </div>
+        
+            <script>
 
+                var mic = document.getElementById('microphone');
+                var file = document.getElementById('file');
+                mic.click()
+                document.getElementById('upload_container').style.display="none"
+                document.onclick = function(e){
+                    if(e.target.id == "file"){
+                        document.getElementById('upload_container').style.display="block"
+                    }
+                    else if(e.target.id == "microphone"){
+                        document.getElementById('upload_container').style.display="none"
+                    }
+                }
+            </script>
         </div>
+        </form>
     </div>
 </body>
 </html>
