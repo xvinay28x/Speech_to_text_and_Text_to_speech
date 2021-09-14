@@ -55,13 +55,24 @@
             height: 8rem;
             width: 100%;
         }
-        #submit{
+        #play{
             height: 3rem;
             width: 8rem;
             border-radius: 2rem;
             font-size: 1.3rem;
-            margin-left: 14rem;
+            margin-left: 7rem;
+            cursor: pointer;
+            background-color: rgb(66, 64, 64);
+
+        }
+        #download{
+            height: 3rem;
+            width: 8rem;
+            border-radius: 2rem;
+            font-size: 1.3rem;
+            margin-left: 6rem;
             margin-top: 2rem;
+            cursor: pointer;
             background-color: rgb(66, 64, 64);
         }
         #reset{
@@ -70,9 +81,10 @@
             border-radius: 2rem;
             font-size: 1.3rem;
             margin-left: 6rem;
+            cursor: pointer;
             background-color: rgb(66, 64, 64);
         }
-        #submit:hover,#reset:hover{
+        #download:hover,#play:hover,#reset:hover{
             background-color: rgb(201, 165, 5);
         }
     </style>
@@ -81,14 +93,15 @@
     <div id="container">
         <h1 id="heading">Text To Speech</h1>
         <div id="main_container">
-            <form action="#">
+            <form action="/text-to-speech-using-file">
             <div id="write">
                 <img src="/static/voice_wave.gif" alt="" id="gif" height="340" width="900">
                 <textarea name="text" id="text" cols="30" rows="10" placeholder="Write Here..."></textarea>
             </div>
             
             <div id="button_container">
-                <button type="submit" id="submit">Convert</button>
+                <button type="submit" id="play">Play</button>
+                <button type="submit" id="download">Download</button>
                 <button type="reset" id="reset">Reset</button>
             </div>
             </form>
