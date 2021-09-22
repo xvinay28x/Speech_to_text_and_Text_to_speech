@@ -90,23 +90,30 @@
     </style>
 </head>
 <body>
+    <form action="/text-to-speech-using-file" method="post">
     <div id="container">
         <h1 id="heading">Text To Speech</h1>
         <div id="main_container">
-            <form action="/text-to-speech-using-file">
+            
             <div id="write">
-                <img src="/static/voice_wave.gif" alt="" id="gif" height="340" width="900">
+               <!-- <img src="/static/voice_wave.gif" alt="" id="gif" height="340" width="900">-->
                 <textarea name="text" id="text" cols="30" rows="10" placeholder="Write Here..."></textarea>
             </div>
-            
             <div id="button_container">
-                <button type="submit" id="play">Play</button>
+                <button type="button" id="play" onclick="strt()">Play</button>
                 <button type="submit" id="download">Download</button>
                 <button type="reset" id="reset">Reset</button>
             </div>
-            </form>
+            
+            <script>
+                function strt(){
+                    var text = document.getElementById('text')
+                    window.speechSynthesis.speak(new SpeechSynthesisUtterance(text.value));
+                }
+            </script>
 
         </div>
     </div>
+    </form>
 </body>
 </html>

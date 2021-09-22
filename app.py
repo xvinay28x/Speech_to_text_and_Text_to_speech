@@ -3,7 +3,8 @@ import speech_recognition as sr
 from gtts import gTTS
 import pyttsx3
 import os
-
+import pickle
+import main2
 temp_path = os.path.join(os.environ["USERPROFILE"])
 path = temp_path+"/Downloads/"
 global c
@@ -26,6 +27,16 @@ def stt():
 def tts():
     return render_template("text_to_speech.html")
 
+@app.route("/speech_to_text_using_file",methods=["POST"])
+def speech_to_text():
+    file_name = "your_file.mp3"
+
+    r  = sr.Recognizer()
+    with sr.AudioFile(file_name) as source:
+        r.energy_threshold = 4000
+        audio = r.listen(source) 
+        text = r.recognize_google(audio,language=c)  
+    return render_template("stt3.html",stt = text)    
 
 @app.route("/main", methods=["POST"])
 def main():
@@ -44,13 +55,13 @@ def main():
             m = "hi"
         else:
             m = "en"
-        n.save("D:/programming/Python/Machine Learning Projects/project_speech_to_text_or_text_to_speech/your_file.mp3")
-        return render_template("stt3.html",)
+        n.save("D:/programming/Python/Machine_Learning_Projects/project_speech_to_text_or_text_to_speech/your_file.mp3")
+        speech_to_text()
     elif a == 'write':
         return render_template("tts2.html")
     elif a == 'upload':
         n = request.files['file']
-        n.save("D:/programming/Python/Machine Learning Projects/project_speech_to_text_or_text_to_speech/your_file.txt")   
+        n.save("D:/programming/Python/Machine_Learning_Projects/project_speech_to_text_or_text_to_speech/your_file.txt")   
         return render_template("tts3.html") 
 
 @app.route("/write",methods=["POST"])
@@ -66,25 +77,16 @@ def dnd():
     z.close()
     return render_template("stt2.html")
 
-@app.route("/speech-to-text-using-file",methods=["POST"])
-def speech_to_text():
-    file_name = "your_file.mp3"
-    r  = sr.Recognizer()
-    with sr.AudioFile(file_name) as source:
-        r.energy_threshold = 4000
-        audio = r.listen(source) 
-        text = r.recognize_google(audio,language=c)  
-        a = open("voice.txt",'w')
-        a.write(text)
-        a.close()
-    return render_template("stt3.html",stt = text)    
 
-@app.route("/text-to-speech-using-file")
+@app.route("/text-to-speech-using-file",methods=['POST'])
 def text_to_speech():
-    text = open("your_file.txt","r")
-    mp3 = gTTS(text)
-    mp3.save(file.mp3)
-    return render_template("tts3.html")
+    text = open("your_file.txt")
+    a = text.read()
+    mp3 = gTTS(a)
+    text.close()
+    mp3.save(path+"file.mp3")
+    
+    return render_template("tts3.html",x="File Download Successfully")
 
 if __name__ == "__main__":
     app.run(debug=True)
