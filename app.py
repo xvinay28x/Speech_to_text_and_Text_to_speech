@@ -4,7 +4,6 @@ from gtts import gTTS
 import pyttsx3
 import os
 import pickle
-import main2
 temp_path = os.path.join(os.environ["USERPROFILE"])
 path = temp_path+"/Downloads/"
 global c
@@ -79,14 +78,20 @@ def dnd():
 
 
 @app.route("/text-to-speech-using-file",methods=['POST'])
-def text_to_speech():
+def text_to_speech_using_file():
     text = open("your_file.txt")
     a = text.read()
     mp3 = gTTS(a)
     text.close()
     mp3.save(path+"file.mp3")
-    
     return render_template("tts3.html",x="File Download Successfully")
+
+@app.route("/text-to-speech",methods=['POST'])
+def text_to_speech():
+    text = request.form['text']
+    mp3 = gTTS(text)
+    mp3.save(path+"file.mp3")
+    return render_template("tts2.html",x="File Download Successfully")
 
 if __name__ == "__main__":
     app.run(debug=True)
