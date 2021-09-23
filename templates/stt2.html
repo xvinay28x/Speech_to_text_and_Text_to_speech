@@ -80,7 +80,7 @@
     <div id="container">
         <h1 id="heading">Speech To Text Using MicroPhone</h1>
         <div id="main_container">
-            <form action="/download_file" method="post">
+            <form action="/speech-to-text" method="post">
 
             <img src="/static/voice_wave.gif" alt="" id="gif" height="340" width="900">
             <div class="words">
@@ -91,6 +91,7 @@
                 <button type="reset" id="reset" onclick="reset_text()">Reset</button>
             </div>
             </form>
+            <p style="color: white; text-align: center; font-size: 2rem; position: relative;">{{message}}</p>
         </div>
         
     </div>
@@ -122,6 +123,6 @@
             recognition.stop()
             document.getElementById('p').innerHTML = ""
             document.getElementById('p').value = ""
-        }
+        } 
 </script>
 </html>

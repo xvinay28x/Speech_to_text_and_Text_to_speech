@@ -3,6 +3,7 @@ import speech_recognition as sr
 from gtts import gTTS
 import pyttsx3
 import os
+
 import pickle
 temp_path = os.path.join(os.environ["USERPROFILE"])
 path = temp_path+"/Downloads/"
@@ -27,7 +28,7 @@ def tts():
     return render_template("text_to_speech.html")
 
 @app.route("/speech_to_text_using_file",methods=["POST"])
-def speech_to_text():
+def speech_to_text_using_file():
     file_name = "your_file.mp3"
 
     r  = sr.Recognizer()
@@ -63,18 +64,14 @@ def main():
         n.save("D:/programming/Python/Machine_Learning_Projects/project_speech_to_text_or_text_to_speech/your_file.txt")   
         return render_template("tts3.html") 
 
-@app.route("/write",methods=["POST"])
-def write():
-    return render_template("tts2.html")
 
-
-@app.route('/download_file',methods=['POST'])
-def dnd():
-    a = request.form['converted_text']
-    z = open(path+"file.txt","w")
-    z.write(a)
-    z.close()
-    return render_template("stt2.html")
+@app.route("/speech-to-text",methods=['POST'])
+def speech_to_text():
+    text = request.form['converted_text']
+    file = open(path+"file.txt","w",encoding="utf-8")
+    file.write(text)
+    file.close()
+    return render_template("stt2.html",message = "File Download Successfully")
 
 
 @app.route("/text-to-speech-using-file",methods=['POST'])
