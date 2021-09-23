@@ -1,17 +1,14 @@
 from flask import Flask, render_template, request
 import speech_recognition as sr
+from pydub import AudioSegment
 from gtts import gTTS
 import pyttsx3
 import os
-
 import pickle
 temp_path = os.path.join(os.environ["USERPROFILE"])
 path = temp_path+"/Downloads/"
-global c
-c = "vinay"
 
 app = Flask(__name__)
-
 
 @app.route('/')
 def index():
@@ -27,16 +24,22 @@ def stt():
 def tts():
     return render_template("text_to_speech.html")
 
-@app.route("/speech_to_text_using_file",methods=["POST"])
-def speech_to_text_using_file():
-    file_name = "your_file.mp3"
 
+@app.route("/speech-to-text-using-file",methods=["POST"])
+def speech_to_text_using_file():  
+    q = open("lang.txt","r") 
+    o = q.read()
+    q.close()
+    file_name = "your_file.wav"
     r  = sr.Recognizer()
     with sr.AudioFile(file_name) as source:
-        r.energy_threshold = 4000
         audio = r.listen(source) 
-        text = r.recognize_google(audio,language=c)  
-    return render_template("stt3.html",stt = text)    
+        text = r.recognize_google(audio,language=o)  
+        file = open(path+"file.txt","w",encoding="utf-8")
+        file.write(text)
+    file.close()    
+    return render_template("stt3.html",message="File Download Successfully")    
+
 
 @app.route("/main", methods=["POST"])
 def main():
@@ -47,16 +50,20 @@ def main():
             m = "hi"
         else:
             m = "en"
+        
         return render_template("stt2.html",lang=m)
     elif a == 'file':
         c = request.form['language']
-        n = request.files["mp3_file"]
         if c == "hindi":
             m = "hi"
         else:
             m = "en"
-        n.save("D:/programming/Python/Machine_Learning_Projects/project_speech_to_text_or_text_to_speech/your_file.mp3")
-        speech_to_text()
+        i = open("lang.txt","w")    
+        i.write(m)
+        i.close()
+        n = request.files["mp3_file"]
+        n.save("D:/programming/Python/Machine_Learning_Projects/project_speech_to_text_or_text_to_speech/your_file.wav")
+        return render_template("stt3.html")
     elif a == 'write':
         return render_template("tts2.html")
     elif a == 'upload':
@@ -81,14 +88,16 @@ def text_to_speech_using_file():
     mp3 = gTTS(a)
     text.close()
     mp3.save(path+"file.mp3")
-    return render_template("tts3.html",x="File Download Successfully")
+    return render_template("tts3.html",message="File Download Successfully")
+
 
 @app.route("/text-to-speech",methods=['POST'])
 def text_to_speech():
     text = request.form['text']
     mp3 = gTTS(text)
     mp3.save(path+"file.mp3")
-    return render_template("tts2.html",x="File Download Successfully")
+    return render_template("tts2.html",message="File Download Successfully")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
